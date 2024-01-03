@@ -47,6 +47,9 @@ task AlignPostprocessAllLanes{
         Int? walltime_override
     }
     command {
+        echo ~{sep=" "supplementary_references.reference}
+        exit -1
+
         alignment_utils alignment \
         --fastq_files ~{write_json(fastq_files)} \
         --metadata_yaml ~{metadata_yaml} \
