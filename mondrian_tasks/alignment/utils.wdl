@@ -64,8 +64,6 @@ task AlignPostprocessAllLanes{
         --bam_output aligned.bam \
         --metrics_output metrics.csv.gz \
         --metrics_gc_output gc_metrics.csv.gz \
-        --fastqscreen_detailed_output detailed_fastqscreen.csv.gz \
-        --fastqscreen_summary_output summary_fastqscreen.csv.gz \
         --tar_output ~{cell_id}.tar.gz \
         --num_threads ~{num_threads} \
         ~{true='--run_fastq' false='' run_fastq}
