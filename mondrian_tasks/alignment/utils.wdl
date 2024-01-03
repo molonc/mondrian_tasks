@@ -47,8 +47,9 @@ task AlignPostprocessAllLanes{
         Int? walltime_override
     }
     command {
-        echo ~{supplementary_references.reference}
-        exit -1
+
+        supplementary_refs=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)}, 'reference', 'supplementary_references')`
+        supplementary_names=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)}, 'genome_name', 'supplementary_reference_names')`
 
         alignment_utils alignment \
         --fastq_files ~{write_json(fastq_files)} \
@@ -56,7 +57,8 @@ task AlignPostprocessAllLanes{
         --reference ~{reference.reference} \
         --reference_name ~{reference.genome_name} \
         --reference_version ~{reference.genome_version} \
-        --supplementary_references_json ~{write_json(supplementary_references)} \
+        $supplementary_refs\
+        $supplementary_names\
         --tempdir tempdir \
         --adapter1 ~{adapter1} \
         --adapter2 ~{adapter2} \
