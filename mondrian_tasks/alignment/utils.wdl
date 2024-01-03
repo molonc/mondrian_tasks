@@ -75,10 +75,6 @@ task AlignPostprocessAllLanes{
         File metrics_yaml = "metrics.csv.gz.yaml"
         File gc_metrics = "gc_metrics.csv.gz"
         File gc_metrics_yaml = "gc_metrics.csv.gz.yaml"
-        File fastqscreen_detailed_metrics = "detailed_fastqscreen.csv.gz"
-        File fastqscreen_detailed_metrics_yaml = "detailed_fastqscreen.csv.gz.yaml"
-        File fastqscreen_summary_metrics = "summary_fastqscreen.csv.gz"
-        File fastqscreen_summary_metrics_yaml = "summary_fastqscreen.csv.gz.yaml"
         File tar_output = "~{cell_id}.tar.gz"
     }
     runtime{
