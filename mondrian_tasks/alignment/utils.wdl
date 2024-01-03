@@ -47,7 +47,7 @@ task AlignPostprocessAllLanes{
         Int? walltime_override
     }
     command {
-        echo ~{sep=" "supplementary_references.reference}
+        echo ~{supplementary_references.reference}
         exit -1
 
         alignment_utils alignment \
