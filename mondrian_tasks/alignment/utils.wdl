@@ -48,17 +48,16 @@ task AlignPostprocessAllLanes{
     }
     command {
 
-        supplementary_refs=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)}, 'reference', 'supplementary_references')`
-        supplementary_names=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)}, 'genome_name', 'supplementary_reference_names')`
+        supplementary=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)})`
+        fastqs=`python -c "import mondrianutils.alignment as utils;utils.fastqs_cmdline(~{write_json(fastq_files)})`
 
         alignment_utils alignment \
-        --fastq_files ~{write_json(fastq_files)} \
+        $fastqs \
         --metadata_yaml ~{metadata_yaml} \
         --reference ~{reference.reference} \
         --reference_name ~{reference.genome_name} \
         --reference_version ~{reference.genome_version} \
-        $supplementary_refs\
-        $supplementary_names\
+        $supplementary\
         --tempdir tempdir \
         --adapter1 ~{adapter1} \
         --adapter2 ~{adapter2} \
