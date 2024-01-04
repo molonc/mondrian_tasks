@@ -48,8 +48,8 @@ task AlignPostprocessAllLanes{
     }
     command {
 
-        supplementary=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)})`
-        fastqs=`python -c "import mondrianutils.alignment as utils;utils.fastqs_cmdline(~{write_json(fastq_files)})`
+        supplementary=`python -c "import mondrianutils.alignment as utils;utils.supplementary_reference_cmdline(~{write_json(supplementary_references)})"`
+        fastqs=`python -c "import mondrianutils.alignment as utils;utils.fastqs_cmdline(~{write_json(fastq_files)})"`
 
         alignment_utils alignment \
         $fastqs \
