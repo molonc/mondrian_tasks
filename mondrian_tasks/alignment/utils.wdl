@@ -54,9 +54,7 @@ task AlignPostprocessAllLanes{
         alignment_utils alignment \
         $fastqs \
         --metadata_yaml ~{metadata_yaml} \
-        --reference ~{reference.reference} \
-        --reference_name ~{reference.genome_name} \
-        --reference_version ~{reference.genome_version} \
+        --reference ~{reference.genome_name},~{reference.genome_version},~{reference.reference} \
         $supplementary\
         --tempdir tempdir \
         --adapter1 ~{adapter1} \
