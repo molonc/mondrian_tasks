@@ -37,12 +37,15 @@ task Hmmcopy{
         File map_wig
         File reference
         File reference_fai
+        File quality_classifier_training_data
+        File? quality_classifier_model
         String map_cutoff
         String? singularity_image
         String? docker_image
         Int? memory_override
         Int? walltime_override
     }
+    String model_str = if defined(quality_classifier_model) then '--quality_classifier_model ~{quality_classifier_model}' else ''
     command<<<
         hmmcopy_utils run-hmmcopy \
         --readcount_wig ~{readcount_wig} \
@@ -58,7 +61,9 @@ task Hmmcopy{
         --bias_output bias.pdf \
         --cell_id $(basename ~{readcount_wig} .wig) \
         --tempdir output \
-        --map_cutoff ~{map_cutoff}
+        --map_cutoff ~{map_cutoff} \
+        --quality_classifier_training_data ~{quality_classifier_training_data} \
+        ~{model_str}
     >>>
     output{
         File reads = 'reads.csv.gz'
