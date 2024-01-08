@@ -38,6 +38,7 @@ task Hmmcopy{
         File reference
         File reference_fai
         File alignment_metrics
+        File alignment_metrics_yaml
         File quality_classifier_training_data
         File? quality_classifier_model
         String map_cutoff
