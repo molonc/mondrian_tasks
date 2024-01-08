@@ -37,6 +37,7 @@ task Hmmcopy{
         File map_wig
         File reference
         File reference_fai
+        File alignment_metrics
         File quality_classifier_training_data
         File? quality_classifier_model
         String map_cutoff
@@ -51,6 +52,7 @@ task Hmmcopy{
         --readcount_wig ~{readcount_wig} \
         --gc_wig_file ~{gc_wig} \
         --map_wig_file ~{map_wig} \
+        --alignment_metrics ~{alignment_metrics} \
         --metrics metrics.csv.gz \
         --params params.csv.gz \
         --reads reads.csv.gz \
