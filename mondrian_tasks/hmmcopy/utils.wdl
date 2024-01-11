@@ -29,6 +29,69 @@ task RunReadCounter{
     }
 }
 
+task CellHmmcopy{
+    input{
+        File bamfile
+        File gc_wig
+        File map_wig
+        File reference
+        File reference_fai
+        File alignment_metrics
+        File alignment_metrics_yaml
+        File repeats_satellite_regions
+        Array[String] chromosomes
+        File quality_classifier_training_data
+        File? quality_classifier_model
+        String map_cutoff
+        String? singularity_image
+        String? docker_image
+        Int? memory_override
+        Int? walltime_override
+    }
+    String model_str = if defined(quality_classifier_model) then '--quality_classifier_model ~{quality_classifier_model}' else ''
+    command<<<
+        hmmcopy_utils run-cell-hmmcopy \
+        --bamfile ~{bamfile} \
+        --gc_wig_file ~{gc_wig} \
+        --map_wig_file ~{map_wig} \
+        --alignment_metrics ~{alignment_metrics} \
+        --metrics metrics.csv.gz \
+        --params params.csv.gz \
+        --reads reads.csv.gz \
+        --segments segments.csv.gz \
+        --output_tarball hmmcopy_data.tar.gz \
+        --reference ~{reference} \
+        --segments_output segments.pdf \
+        --bias_output bias.pdf \
+        --tempdir output \
+        --map_cutoff ~{map_cutoff} \
+        --quality_classifier_training_data ~{quality_classifier_training_data} \
+        ~{model_str}
+    >>>
+    output{
+        File reads = 'reads.csv.gz'
+        File reads_yaml = 'reads.csv.gz.yaml'
+        File params = 'params.csv.gz'
+        File params_yaml = 'params.csv.gz.yaml'
+        File segments = 'segments.csv.gz'
+        File segments_yaml = 'segments.csv.gz.yaml'
+        File metrics = 'metrics.csv.gz'
+        File metrics_yaml = 'metrics.csv.gz.yaml'
+        File tarball = 'hmmcopy_data.tar.gz'
+        File segments_pdf = 'segments.pdf'
+        File segments_sample = 'segments.pdf.sample'
+        File bias_pdf = 'bias.pdf'
+    }
+    runtime{
+        memory: "~{select_first([memory_override, 7])} GB"
+        walltime: "~{select_first([walltime_override, 6])}:00"
+        cpu: 1
+        docker: '~{docker_image}'
+        singularity: '~{singularity_image}'
+    }
+}
+
+
 
 task Hmmcopy{
     input{
