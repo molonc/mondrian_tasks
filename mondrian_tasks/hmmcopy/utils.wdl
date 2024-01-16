@@ -32,6 +32,7 @@ task RunReadCounter{
 task CellHmmcopy{
     input{
         File bamfile
+        File baifile
         File gc_wig
         File map_wig
         File reference
@@ -84,7 +85,7 @@ task CellHmmcopy{
         File bias_pdf = 'bias.pdf'
     }
     runtime{
-        memory: "~{select_first([memory_override, 7])} GB"
+        memory: "~{select_first([memory_override, 47])} GB"
         walltime: "~{select_first([walltime_override, 6])}:00"
         cpu: 1
         docker: '~{docker_image}'
