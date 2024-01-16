@@ -55,6 +55,7 @@ task CellHmmcopy{
         --gc_wig_file ~{gc_wig} \
         --map_wig_file ~{map_wig} \
         --alignment_metrics ~{alignment_metrics} \
+        --chromosomes ~{sep=" --chromosomes "chromosomes} \
         --metrics metrics.csv.gz \
         --params params.csv.gz \
         --reads reads.csv.gz \
