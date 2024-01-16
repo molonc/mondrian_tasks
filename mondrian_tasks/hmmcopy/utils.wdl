@@ -51,7 +51,7 @@ task CellHmmcopy{
     String model_str = if defined(quality_classifier_model) then '--quality_classifier_model ~{quality_classifier_model}' else ''
     command<<<
         hmmcopy_utils run-cell-hmmcopy \
-        --bamfile ~{bamfile} \
+        --bam_file ~{bamfile} \
         --gc_wig_file ~{gc_wig} \
         --map_wig_file ~{map_wig} \
         --alignment_metrics ~{alignment_metrics} \
