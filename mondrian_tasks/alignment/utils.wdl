@@ -23,6 +23,7 @@ task read_samplesheet{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -85,6 +86,8 @@ task AlignPostprocessAllLanes{
         cpu: "~{num_threads}"
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "400 GB"
+        maxRetries: 3
     }
 }
 
@@ -115,6 +118,7 @@ task TrimGalore{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -140,6 +144,7 @@ task TagBamWithCellid{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 
 }
@@ -184,7 +189,8 @@ task BamMerge{
         cpu: '~{num_threads}'
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
-        disks: "local-disk " + length(input_bams) + " HDD"
+        disk: "1950 GB"
+        maxRetries: 3
     }
 }
 
@@ -212,6 +218,8 @@ task AddContaminationStatus{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "200 GB"
+        maxRetries: 3
     }
 }
 
@@ -239,6 +247,7 @@ task ClassifyFastqscreen{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -279,6 +288,8 @@ task AlignmentMetadata{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "1950 GB"
+        maxRetries: 3
     }
 }
 
@@ -320,6 +331,8 @@ task InputValidation{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "350 GB"
+        maxRetries: 3
     }
 
 }

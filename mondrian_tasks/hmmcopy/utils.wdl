@@ -26,6 +26,8 @@ task RunReadCounter{
         cpu: "~{num_threads}"
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "350 GB"
+        maxRetries: 3
     }
 }
 
@@ -153,6 +155,7 @@ task Hmmcopy{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -186,6 +189,7 @@ task PlotHeatmap{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -220,6 +224,7 @@ task CreateSegmentsTar{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -252,6 +257,7 @@ task GenerateHtmlReport{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -284,6 +290,7 @@ task AddClusteringOrder{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 
@@ -328,6 +335,7 @@ task HmmcopyMetadata{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        maxRetries: 3
     }
 }
 

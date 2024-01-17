@@ -82,6 +82,7 @@ task ConcatenateCsv {
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "200 GB"
     }
 }
 
@@ -110,6 +111,7 @@ task MergeCsv{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "200 GB"
     }
 }
 

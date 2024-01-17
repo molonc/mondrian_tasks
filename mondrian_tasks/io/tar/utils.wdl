@@ -25,5 +25,6 @@ task TarFiles{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "350 GB"
     }
 }

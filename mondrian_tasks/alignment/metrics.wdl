@@ -118,5 +118,6 @@ task AddMetadata{
         cpu: 1
         docker: '~{docker_image}'
         singularity: '~{singularity_image}'
+        disk: "100 GB"
     }
 }
